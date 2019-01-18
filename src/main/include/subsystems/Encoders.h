@@ -18,7 +18,7 @@ class Encoders : public frc::Subsystem {
   private:
   const double MAX_PERIOD = .1;
 	const double MIN_RATE = .05;
-	const double PULSE = 0.06545;// in cm
+	const double PULSE = 1; //measure later
 	const double SAMPLES_TO_AVE = 7;
 	frc::Encoder *encoder;
 };

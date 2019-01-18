@@ -1,5 +1,6 @@
 #include "Robot.h"
 #include "subsystems/Drive.h"
+#include "CommandBase.h"
 
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
@@ -37,6 +38,19 @@ void Robot::TestPeriodic() {}
 
 void Robot::AddSmartDashboardItems() {
     
+	frc::SmartDashboard::PutNumber("rightcount", CommandBase::rightEncoder->getCount());
+	frc::SmartDashboard::PutNumber("rightRaw Count", CommandBase::rightEncoder->getRaw());
+	frc::SmartDashboard::PutNumber("rightDistance", CommandBase::rightEncoder->getDistance());
+	frc::SmartDashboard::PutNumber("rightRate", CommandBase::rightEncoder->getRate());
+	frc::SmartDashboard::PutBoolean("rightDirection", CommandBase::rightEncoder->getDirection());
+	frc::SmartDashboard::PutBoolean("rightStopped", CommandBase::rightEncoder->getStopped());
+	frc::SmartDashboard::PutNumber("leftcount", CommandBase::leftEncoder->getCount());
+	frc::SmartDashboard::PutNumber("leftRaw Count", CommandBase::leftEncoder->getRaw());
+	frc::SmartDashboard::PutNumber("leftDistance", CommandBase::leftEncoder->getDistance());
+	frc::SmartDashboard::PutNumber("leftRate", CommandBase::leftEncoder->getRate());
+	frc::SmartDashboard::PutBoolean("leftDirection", CommandBase::leftEncoder->getDirection());
+	frc::SmartDashboard::PutBoolean("leftStopped", CommandBase::leftEncoder->getStopped());
+
 }
 
 #ifndef RUNNING_FRC_TESTS

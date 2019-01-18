@@ -8,6 +8,7 @@
 #include "subsystems/UDPReceiver.h"
 #include "subsystems/Drive.h"
 #include "subsystems/Sighting.h"
+#include "subsystems/Encoders.h"
 #include "OI.h"
 
 class CommandBase : public frc::CommandGroup {
@@ -18,6 +19,8 @@ class CommandBase : public frc::CommandGroup {
 
   
   static std::unique_ptr<Drive> drive;
+  static std::unique_ptr<Encoders> leftEncoder;
+  static std::unique_ptr<Encoders> rightEncoder;
   static std::unique_ptr<OI> oi;
   static std::unique_ptr<UDPReceiver> udp;
   static std::unique_ptr<Sighting> sight;
