@@ -2,7 +2,7 @@
 #include <frc/smartDashboard/SmartDashboard.h>
 #include <String>
 
-Encoders::Encoders(std::string shortName, unsigned int channelA, unsigned int channelB, bool reverseDirection) : Subsystem("Encoders") {
+Encoders::Encoders(std::string shortName, unsigned int channelA, unsigned int channelB, bool reverseDirection) : frc::Subsystem("Encoders") {
 	encoder = new frc::Encoder(channelA, channelB, reverseDirection, frc::Encoder::EncodingType::k4X);
 	encoder->Reset();
 	encoder->SetMaxPeriod(MAX_PERIOD);

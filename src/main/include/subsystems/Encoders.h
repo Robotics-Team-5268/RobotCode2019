@@ -15,8 +15,6 @@ class Encoders : public frc::Subsystem {
 	double getStopped() const;
 	void reset() const;
 	Encoders(std::string shortName, unsigned int channelA, unsigned int channelB, bool reverseDirection);
-  Encoders();
-  void InitDefaultCommand() override;
   private:
   const double MAX_PERIOD = .1;
 	const double MIN_RATE = .05;
