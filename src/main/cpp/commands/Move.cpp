@@ -16,7 +16,9 @@ void Move::Execute() {
   }
 }
 
-bool Move::IsFinished() { return false; }
+bool Move::IsFinished() { 
+  return timer->HasPeriodPassed(seconds); 
+  }
 
 void Move::End() {}
 
