@@ -5,6 +5,8 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
+std::unique_ptr<Autonomous> Robot::autonomousCommand;
+AutonomousChooser Robot::AutoChooser;
 
 void Robot::RobotInit() {
     CommandBase::init();
@@ -18,7 +20,8 @@ void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() { frc::Scheduler::GetInstance()->Run(); }
 
 void Robot::AutonomousInit() {
-
+	autonomousCommand.reset(new Autonomous(AutoChooser.AutonomousSelection()));
+	autonomousCommand->Start();
 }
 
 void Robot::AutonomousPeriodic() { 

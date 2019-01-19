@@ -14,6 +14,7 @@ void VelocityTest::Execute() {
     } else {
         count++;
     }
+    drive->setMotors(driveCommand, driveCommand);
 }
 
 bool VelocityTest::IsFinished() { 
