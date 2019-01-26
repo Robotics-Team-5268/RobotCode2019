@@ -1,26 +1,31 @@
 #include "commands/VelocityTest.h"
 
-VelocityTest::VelocityTest() {
-  driveCommand = 0.0;
+VelocityTest::VelocityTest() 
+: fout("/home/lvuser/TestValue.csv"),
+pdp()
+{
+  driveCommand = 0.6;
   count = 0;
+  fout << "Front Left,Front Right,Back Left,Back Right,LeftEncoderVelocity,RightEncoderVelocity" << '\n';
 }
 
 void VelocityTest::Initialize() {}
 
 void VelocityTest::Execute() {
-    if (count == 5) {
-        driveCommand += 0.05;
-        count = 0;
-    } else {
-        count++;
-    }
-    drive->setMotors(driveCommand, driveCommand);
+    count++;
+    drive->FindVelocity(driveCommand, driveCommand);
+    double left = CommandBase::leftEncoder->getRate();
+    double right = CommandBase::rightEncoder->getRate();
+    fout << pdp.GetCurrent(1) << "," << pdp.GetCurrent(2) << "," << pdp.GetCurrent(0) << "," << pdp.GetCurrent(3) << "," << left << "," << right << '\n';
 }
 
-bool VelocityTest::IsFinished() { 
-    return (1.0 <= driveCommand && 5 <= count); 
+bool VelocityTest::IsFinished() {
+    return (200 <= count);
 }
 
-void VelocityTest::End() {}
+void VelocityTest::End() {
+    fout.close();
+}
 
 void VelocityTest::Interrupted() {}
+

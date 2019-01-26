@@ -3,7 +3,11 @@
 #include <frc/commands/Subsystem.h>
 #include <frc/drive/DifferentialDrive.h>
 
+#include "ITG3200Gyro.h"
 #include "RobotMap.h"
+
+#include <iostream>
+#include <fstream>
 
 class Drive : public frc::Subsystem {
  private:
@@ -18,10 +22,25 @@ class Drive : public frc::Subsystem {
 	frc::DifferentialDrive diffDrive{leftSC, rightSC};
 	float oldLeftSpeed, oldRightSpeed;
 	const float MAX_CHANGE = .05;
+	const float MAX_SPEED = 3000;
+	float velocityToCommandSlope[4];
+	float velocityToCommandIntercept[4];
+
+	frc::AnalogGyro gyro{GYRO_ANALOG_PORT};
+ 	
+
+
+    //std::ofstream fout;
  public:
-  Drive();
-  void InitDefaultCommand() override;
-  virtual void setMotors(float leftSpeed, float rightSpeed);
-  virtual void safetyOff() {diffDrive.SetSafetyEnabled(false);}
-  virtual void takeInput();
+	Drive();
+	void InitDefaultCommand() override;
+	virtual void setMotors(float leftSpeed, float rightSpeed);
+	virtual void safetyOff() {diffDrive.SetSafetyEnabled(false);}
+	virtual void takeInput();
+	frc::AnalogGyro* getGyro();
+	float getGyroAngle();
+	float getGyroRate();
+	void resetGyro();
+	void SetVelocity(float left, float right);
+	void FindVelocity(float left, float right);
 };

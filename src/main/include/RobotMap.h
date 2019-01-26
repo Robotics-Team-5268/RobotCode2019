@@ -14,3 +14,5 @@
 #define SCBL_INVERTED false
 #define SCFR_INVERTED false
 #define SCBR_INVERTED false
+
+#define GYRO_ANALOG_PORT 0

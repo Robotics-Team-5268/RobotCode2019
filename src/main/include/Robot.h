@@ -5,8 +5,11 @@
 #include <frc/smartdashboard/SendableChooser.h>
 
 #include "CommandBase.h"
+#include "subsystems/ITG3200Gyro.h"
 #include "commands/Autonomous.h"
 #include "AutonomousChooser.h"
+
+
 
 class Robot : public frc::TimedRobot {
  public:
@@ -23,5 +26,4 @@ class Robot : public frc::TimedRobot {
   void TeleopPeriodic() override;
   void TestPeriodic() override;
   void AddSmartDashboardItems();
-
 };

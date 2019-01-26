@@ -55,7 +55,10 @@
     "typeinfo": "cpp",
     "utility": "cpp",
     "*.inc": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "complex": "cpp",
+    "iomanip": "cpp"
   },
-  "C_Cpp.intelliSenseEngineFallback": "Disabled"
+  "C_Cpp.intelliSenseEngineFallback": "Disabled",
+  "C_Cpp.errorSquiggles": "Disabled"
 }

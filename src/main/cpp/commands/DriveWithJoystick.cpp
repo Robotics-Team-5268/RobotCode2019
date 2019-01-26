@@ -7,7 +7,7 @@ DriveWithJoystick::DriveWithJoystick() : CommandBase("DriveWithJoystick") {
 void DriveWithJoystick::Initialize() {}
 
 void DriveWithJoystick::Execute() {
-  drive->takeInput();
+  drive->FindVelocity(0.0, 0.0);
 }
 
 bool DriveWithJoystick::IsFinished() { return true; }

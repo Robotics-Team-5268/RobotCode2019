@@ -25,11 +25,12 @@ void Robot::AutonomousInit() {
 }
 
 void Robot::AutonomousPeriodic() { 
-    frc::Scheduler::GetInstance()->Run(); 
+    frc::Scheduler::GetInstance()->Run();
     AddSmartDashboardItems();
 }
 
 void Robot::TeleopInit() {
+	CommandBase::drive->resetGyro();
 }
 
 void Robot::TeleopPeriodic() { 
@@ -40,7 +41,8 @@ void Robot::TeleopPeriodic() {
 void Robot::TestPeriodic() {}
 
 void Robot::AddSmartDashboardItems() {
-    
+	frc::SmartDashboard::PutNumber("Gyro Angle", CommandBase::drive->getGyroAngle());
+	frc::SmartDashboard::PutNumber("Gyro Rate", CommandBase::drive->getGyroRate());
 	frc::SmartDashboard::PutNumber("rightcount", CommandBase::rightEncoder->getCount());
 	frc::SmartDashboard::PutNumber("rightRaw Count", CommandBase::rightEncoder->getRaw());
 	frc::SmartDashboard::PutNumber("rightDistance", CommandBase::rightEncoder->getDistance());
