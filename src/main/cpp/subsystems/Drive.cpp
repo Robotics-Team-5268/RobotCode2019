@@ -5,6 +5,14 @@
 Drive::Drive() : Subsystem("Drive") {
 	oldLeftSpeed = 0.0;
 	oldRightSpeed = 0.0;
+	velocityToCommandIntercept[0] = -316.89;
+	velocityToCommandIntercept[1] = -378.00;
+	velocityToCommandIntercept[2] = -364.78;
+	velocityToCommandIntercept[3] = -331.27;
+	velocityToCommandSlope[0] = 1/3493.57;
+	velocityToCommandSlope[1] = 1/3493.90;
+	velocityToCommandSlope[2] = 1/3386.53;
+	velocityToCommandSlope[3] = 1/3744,83;
 	speedControllerFL.SetInverted(SCFL_INVERTED);
 	speedControllerBL.SetInverted(SCBL_INVERTED);
 	speedControllerFR.SetInverted(SCFR_INVERTED);
@@ -41,4 +49,26 @@ void Drive::setMotors(float leftSpeed, float rightSpeed) {
 
 	oldLeftSpeed = leftSpeed;
 	oldRightSpeed = rightSpeed;
+}
+
+void Drive::setVelocity(float left, float right) {
+	if (left < 0) {
+		left = velocityToCommandSlope[0]*left + velocityToCommandIntercept[0];
+	} else {
+		left = velocityToCommandSlope[2]*left + velocityToCommandIntercept[2];
+	}
+	if (right < 0) {
+		right = velocityToCommandSlope[1]*right + velocityToCommandIntercept[1];
+	} else {
+		right = velocityToCommandSlope[3]*right + velocityToCommandIntercept[3];
+	}
+	setMotors(left, right);
+}
+
+void Drive::findVelocity(float left, float right) {
+	//float left = -CommandBase::oi->getDriverJoystick()->GetRawAxis(1);
+	//float right = -CommandBase::oi->getDriverJoystick()->GetRawAxis(5);
+	left = left*3000;
+	right = right*3000;
+	setVelocity(left, right);
 }

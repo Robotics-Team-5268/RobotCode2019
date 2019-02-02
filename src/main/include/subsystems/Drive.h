@@ -18,10 +18,14 @@ class Drive : public frc::Subsystem {
 	frc::DifferentialDrive diffDrive{leftSC, rightSC};
 	float oldLeftSpeed, oldRightSpeed;
 	const float MAX_CHANGE = .05;
+	float velocityToCommandIntercept[4];
+	float velocityToCommandSlope[4]; 
  public:
   Drive();
   void InitDefaultCommand() override;
   virtual void setMotors(float leftSpeed, float rightSpeed);
   virtual void safetyOff() {diffDrive.SetSafetyEnabled(false);}
   virtual void takeInput();
+  void setVelocity(float left, float right);
+  void findVelocity(float left, float right);
 };

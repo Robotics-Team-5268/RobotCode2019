@@ -8,6 +8,7 @@ std::unique_ptr<Drive> CommandBase::drive;
 std::unique_ptr<OI> CommandBase::oi;
 std::unique_ptr<UDPReceiver> CommandBase::udp;
 std::unique_ptr<Sighting> CommandBase::sight;
+std::unique_ptr<Encoders> CommandBase::leftEncoder, CommandBase::rightEncoder;
 
 CommandBase::CommandBase(const std::string &name) : frc::CommandGroup(name) {
   
@@ -23,4 +24,6 @@ void CommandBase::init() {
     sight.reset(new Sighting());
     // Keep at the end
 	oi.reset(new OI());
+    leftEncoder.reset(new Encoders("left", 2, 3, false));
+    rightEncoder.reset(new Encoders("right", 4, 5, false));
 }

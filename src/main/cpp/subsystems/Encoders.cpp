@@ -42,7 +42,6 @@ double Encoders::getDirection() const {
 double Encoders::getStopped() const {
   return encoder->GetStopped();
 }
-
 void Encoders::reset() const {
   encoder->Reset();
 }

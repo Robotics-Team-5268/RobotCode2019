@@ -37,11 +37,14 @@ public:
 			std::vector<double>& centerY_out,
 			std::vector<double>& width_out,
 			std::vector<double>& height_out,
-			std::vector<double>& area_out);
+			std::vector<double>& x1_out,
+			std::vector<double>& y1_out, 
+			std::vector<double>& x2_out, 
+			std::vector<double>& y2_out, 
+			std::vector<double>& angle_out);
 	void AddSmartDashboardItems();
 	// May become private later
-	std::vector<int> area, centerX, centerY, height, width;
-
+	std::vector<double> centerX, centerY, height, width, x1, y1, x2, y2, angle;
 };
 
 #endif /* SRC_SUBSYSTEMS_UDPRECEIVER_H_ */

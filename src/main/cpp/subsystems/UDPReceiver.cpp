@@ -46,16 +46,26 @@ UDPReceiver::~UDPReceiver() {
 }
 
 // Called by sighting with references to arrays
-void UDPReceiver::GetContours(vector<double>& centerX_out,
-							  vector<double>& centerY_out,
-							  vector<double>& width_out,
-							  vector<double>& height_out,
-							  vector<double>& area_out) {
+void UDPReceiver::GetContours(
+	std::vector<double>& centerX_out,
+	std::vector<double>& centerY_out,
+	std::vector<double>& width_out,
+	std::vector<double>& height_out,
+	std::vector<double>& x1_out,
+	std::vector<double>& y1_out, 
+	std::vector<double>& x2_out, 
+	std::vector<double>& y2_out, 
+	std::vector<double>& angle_out) {
+
 	centerX_out.assign(centerX.begin(), centerX.end());
 	centerY_out.assign(centerY.begin(), centerY.end());
 	width_out.assign(width.begin(), width.end());
 	height_out.assign(height.begin(), height.end());
-	area_out.assign(area.begin(), area.end());
+	x1_out.assign(x1.begin(), x1.end());
+	x2_out.assign(x2.begin(), x2.end());
+	y1_out.assign(y1.begin(), y1.end());
+	y2_out.assign(y2.begin(), y2.end());
+	angle_out.assign(angle.begin(), angle.end());
 
 	// When this uses int vectors, it will be easy, ex:
 	// centerX_out = centerX
@@ -75,8 +85,11 @@ void UDPReceiver::ThreadBody() {
 			centerY.clear();
 			width.clear();
 			height.clear();
-			area.clear();
-
+			x1.clear();
+			y1.clear();
+			x2.clear();
+			y2.clear();
+			angle.clear();
 			string msg = string(buffer);
 
 			frc::SmartDashboard::PutString("Raw contours", msg);
@@ -92,7 +105,11 @@ void UDPReceiver::ThreadBody() {
 					centerY.push_back(strToInt(properties[1]));
 					width.push_back(strToInt(properties[2])); // Crashed here once when super close to target in teleop
 					height.push_back(strToInt(properties[3]));
-					area.push_back(strToInt(properties[4]));
+					x1.push_back(strToInt(properties[4]));
+					y1.push_back(strToInt(properties[5]));
+					x2.push_back(strToInt(properties[6]));
+					y2.push_back(strToInt(properties[7]));
+					angle.push_back(strToInt(properties[8]));
 				}
 			}
 		}
