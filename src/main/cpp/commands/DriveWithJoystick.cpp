@@ -7,7 +7,11 @@ DriveWithJoystick::DriveWithJoystick() : CommandBase("DriveWithJoystick") {
 void DriveWithJoystick::Initialize() {}
 
 void DriveWithJoystick::Execute() {
-  drive->FindVelocity(0.0, 0.0);
+  drive->FindVelocity(
+    -CommandBase::oi->getDriverJoystick()->GetRawAxis(1) ,
+	  -CommandBase::oi->getDriverJoystick()->GetRawAxis(5)
+    // 0.0,0.0
+  );
 }
 
 bool DriveWithJoystick::IsFinished() { return true; }

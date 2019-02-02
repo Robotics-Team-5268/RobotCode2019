@@ -10,6 +10,7 @@ AutonomousChooser Robot::AutoChooser;
 
 void Robot::RobotInit() {
     CommandBase::init();
+	CommandBase::drive->calibrateGyro();
 	CommandBase::drive->safetyOff();
 }
 
@@ -55,7 +56,7 @@ void Robot::AddSmartDashboardItems() {
 	frc::SmartDashboard::PutNumber("leftRate", CommandBase::leftEncoder->getRate());
 	frc::SmartDashboard::PutBoolean("leftDirection", CommandBase::leftEncoder->getDirection());
 	frc::SmartDashboard::PutBoolean("leftStopped", CommandBase::leftEncoder->getStopped());
-
+	frc::SmartDashboard::PutNumber("Ultrasonic", CommandBase::ultrasonic->getVoltage());
 }
 
 #ifndef RUNNING_FRC_TESTS

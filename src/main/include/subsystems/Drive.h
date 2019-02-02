@@ -2,12 +2,9 @@
 
 #include <frc/commands/Subsystem.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/Ultrasonic.h>
 
-#include "ITG3200Gyro.h"
 #include "RobotMap.h"
-
-#include <iostream>
-#include <fstream>
 
 class Drive : public frc::Subsystem {
  private:
@@ -41,6 +38,7 @@ class Drive : public frc::Subsystem {
 	float getGyroAngle();
 	float getGyroRate();
 	void resetGyro();
+	void calibrateGyro();
 	void SetVelocity(float left, float right);
 	void FindVelocity(float left, float right);
 };

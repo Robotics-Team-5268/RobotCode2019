@@ -3,9 +3,7 @@
 
 #include <frc/smartDashBoard/SmartDashBoard.h>
 
-Drive::Drive() : Subsystem("Drive") 
-//, fout("/home/lvuser/TestValue.csv")
-{
+Drive::Drive() : Subsystem("Drive") {
 	oldLeftSpeed = 0.0;
 	oldRightSpeed = 0.0;
 	velocityToCommandIntercept[0] = -316.89;
@@ -20,7 +18,6 @@ Drive::Drive() : Subsystem("Drive")
 	speedControllerBL.SetInverted(SCBL_INVERTED);
 	speedControllerFR.SetInverted(SCFR_INVERTED);
 	speedControllerBR.SetInverted(SCBR_INVERTED);
-
 }
 
 void Drive::InitDefaultCommand() {
@@ -69,6 +66,9 @@ float Drive::getGyroRate() {
 }
 void Drive::resetGyro() {
 	gyro.Reset();
+}
+void Drive::calibrateGyro() {
+	gyro.Calibrate();
 }
 
 void Drive::SetVelocity(float left, float right) {

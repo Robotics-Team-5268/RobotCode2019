@@ -5,7 +5,6 @@
 #include <frc/smartdashboard/SendableChooser.h>
 
 #include "CommandBase.h"
-#include "subsystems/ITG3200Gyro.h"
 #include "commands/Autonomous.h"
 #include "AutonomousChooser.h"
 
