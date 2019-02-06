@@ -3,11 +3,16 @@
 #include "subsystems/Drive.h"
 #include "subsystems/UDPReceiver.h"
 #include "subsystems/Sighting.h"
+#include "subsystems/Elevator.h"
+
+#include <Subsystems/Encoders.h>
 
 std::unique_ptr<Drive> CommandBase::drive;
 std::unique_ptr<Encoders> CommandBase::leftEncoder;
 std::unique_ptr<Encoders> CommandBase::rightEncoder;
 std::unique_ptr<Encoders> CommandBase::elevatorEncoder;
+std::unique_ptr<Elevator> CommandBase::elevator;
+std::unique_ptr<Grabber> CommandBase::grabber;
 std::unique_ptr<OI> CommandBase::oi;
 std::unique_ptr<UDPReceiver> CommandBase::udp;
 std::unique_ptr<Sighting> CommandBase::sight;
@@ -25,10 +30,12 @@ void CommandBase::init() {
     drive.reset(new Drive());
     udp.reset(new UDPReceiver());
     sight.reset(new Sighting());
-    leftEncoder.reset(new Encoders("left", 4, 5, false));
-	rightEncoder.reset(new Encoders("right", 3, 2, false));
-    elevatorEncoder.reset(new Encoders("right", 0, 1, false));
+    leftEncoder.reset(new Encoders("left", 3, 2, false));
+	rightEncoder.reset(new Encoders("right", 1, 0, false));
+    elevatorEncoder.reset(new Encoders("elevator", 4, 5, false));
+    grabber.reset(new Grabber());
     ultrasonic.reset(new MB1013Ultrasonic());
+    elevator.reset(new Elevator());
     // Keep at the end
 	oi.reset(new OI());
 }

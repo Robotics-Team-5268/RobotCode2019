@@ -7,8 +7,11 @@
 
 class Elevator : public frc::PIDSubsystem{
  private:
-  frc::Talon speedController{ELEVATOR_SPEED_CONTROLLER_CHANNEL};
+  frc::Talon elevator_SC{ELEVATOR_SPEED_CONTROLLER_CHANNEL};
+ 
  public:
   Elevator();
-  void setMotor(double height);
+  double ReturnPIDInput();
+  void UsePIDOutput(double output);
+  void InitDefaultCommand();
 };

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "CommandBase.h"
+#include <frc/commands/Command.h>
 
-class MoveElevator : public CommandBase {
+class GrabberCommand : public frc::Command {
  private:
-  double setPoint;
+  std::string direction;
  public:
-  MoveElevator(double setpoint);
+  GrabberCommand(std::string drct);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

@@ -58,8 +58,10 @@
     "iostream": "cpp",
     "complex": "cpp",
     "iomanip": "cpp",
-    "bitset": "cpp"
+    "bitset": "cpp",
+    "numeric": "cpp"
   },
   "C_Cpp.intelliSenseEngineFallback": "Disabled",
-  "C_Cpp.errorSquiggles": "Disabled"
+  "C_Cpp.errorSquiggles": "Disabled",
+  "C_Cpp.configurationWarnings": "Disabled"
 }
