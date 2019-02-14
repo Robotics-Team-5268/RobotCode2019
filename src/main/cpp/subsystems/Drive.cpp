@@ -72,23 +72,17 @@ void Drive::calibrateGyro() {
 }
 
 void Drive::SetVelocity(float left, float right) {
-	if (left < 0) {
-		left = velocityToCommandSlope[0]*(left + velocityToCommandIntercept[0]);
+	float leftSpeed = left * MAX_SPEED;
+	float rightSpeed = right * MAX_SPEED;
+	if (leftSpeed < 0) {
+		leftSpeed = velocityToCommandSlope[0]*(leftSpeed + velocityToCommandIntercept[0]);
 	} else {
-		left = velocityToCommandSlope[2]*(left + velocityToCommandIntercept[2]);
+		leftSpeed = velocityToCommandSlope[2]*(leftSpeed + velocityToCommandIntercept[2]);
 	}
-	if (right < 0) {
-		right = velocityToCommandSlope[1]*(right + velocityToCommandIntercept[1]);
+	if (rightSpeed < 0) {
+		rightSpeed = velocityToCommandSlope[1]*(rightSpeed + velocityToCommandIntercept[1]);
 	} else {
-		right = velocityToCommandSlope[3]*(right + velocityToCommandIntercept[3]);
+		rightSpeed = velocityToCommandSlope[3]*(rightSpeed + velocityToCommandIntercept[3]);
 	}
-	setMotors(left, right);
-}
-
-void Drive::FindVelocity(float leftSpeed, float rightSpeed) {
-	// float leftSpeed = -CommandBase::oi->getDriverJoystick()->GetRawAxis(1);
-	// float rightSpeed = -CommandBase::oi->getDriverJoystick()->GetRawAxis(5);
-	float left = leftSpeed * MAX_SPEED;
-	float right = rightSpeed * MAX_SPEED;
-	SetVelocity(left, right);
+	setMotors(left, rightSpeed);
 }

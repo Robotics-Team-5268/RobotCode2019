@@ -19,7 +19,7 @@ class Drive : public frc::Subsystem {
 	frc::DifferentialDrive diffDrive{leftSC, rightSC};
 	float oldLeftSpeed, oldRightSpeed;
 	const float MAX_CHANGE = .05;
-	const float MAX_SPEED = 3000;
+	const float MAX_SPEED = 3000;//used to be 3000
 	float velocityToCommandSlope[4];
 	float velocityToCommandIntercept[4];
 
@@ -40,5 +40,4 @@ class Drive : public frc::Subsystem {
 	void resetGyro();
 	void calibrateGyro();
 	void SetVelocity(float left, float right);
-	void FindVelocity(float left, float right);
 };

@@ -18,7 +18,7 @@ class Encoders : public frc::Subsystem {
   private:
   const double MAX_PERIOD = .1;
 	const double MIN_RATE = .05;
-	const double PULSE = 1; //measure later
+	const double PULSEINCHES = .00920; //this is the appproximate value for the magnetic encoder. gear ratio for tike is 12.75 and 10.71 on the actual robot18
 	const double SAMPLES_TO_AVE = 7;
 	frc::Encoder *encoder;
 };

@@ -14,6 +14,7 @@ std::unique_ptr<Encoders> CommandBase::elevatorEncoder;
 std::unique_ptr<Elevator> CommandBase::elevator;
 std::unique_ptr<Grabber> CommandBase::grabber;
 std::unique_ptr<OI> CommandBase::oi;
+std::unique_ptr<Arm> CommandBase::arm;
 std::unique_ptr<UDPReceiver> CommandBase::udp;
 std::unique_ptr<Sighting> CommandBase::sight;
 std::unique_ptr<MB1013Ultrasonic> CommandBase::ultrasonic;
@@ -34,6 +35,7 @@ void CommandBase::init() {
 	rightEncoder.reset(new Encoders("right", 1, 0, false));
     elevatorEncoder.reset(new Encoders("elevator", 4, 5, false));
     grabber.reset(new Grabber());
+    arm.reset(new Arm());
     ultrasonic.reset(new MB1013Ultrasonic());
     elevator.reset(new Elevator());
     // Keep at the end

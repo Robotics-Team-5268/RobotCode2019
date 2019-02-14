@@ -8,7 +8,7 @@ Encoders::Encoders(std::string shortName, unsigned int channelA, unsigned int ch
 	encoder->SetMaxPeriod(MAX_PERIOD);
 	encoder->SetMinRate(MIN_RATE);
 	encoder->SetReverseDirection(false);
-	encoder->SetDistancePerPulse(PULSE);
+	encoder->SetDistancePerPulse(PULSEINCHES);
 	encoder->SetSamplesToAverage(SAMPLES_TO_AVE);
 	frc::SmartDashboard::PutNumber(shortName + "count", encoder->Get());
 	frc::SmartDashboard::PutNumber(shortName + "Raw Count", encoder->GetRaw());

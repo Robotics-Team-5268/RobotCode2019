@@ -1,24 +1,23 @@
 #include "commands/MoveElevator.h"
 #include "subsystems/Elevator.h"
 
-MoveElevator::MoveElevator(double setpoint) : CommandBase("MoveElevator") {
+MoveElevator::MoveElevator() : CommandBase("MoveElevator") {
   Requires(CommandBase::elevator.get());
-  setPoint = setpoint;
 }
 
 void MoveElevator::Initialize() {
-  CommandBase::elevator->SetSetpoint(setPoint);
-  CommandBase::elevator->Enable();
 }
 
 void MoveElevator::Execute() {
-
+  CommandBase::elevator->MoveMotor(0.6);
 }
 
 bool MoveElevator::IsFinished() {
-  return CommandBase::elevator->OnTarget(); 
+  return true;
 }
 
-void MoveElevator::End() {}
+void MoveElevator::End() {
+  CommandBase::elevator->MoveMotor(0.0);
+}
 
 void MoveElevator::Interrupted() {}

@@ -2,10 +2,11 @@
 
 #include "CommandBase.h"
 
-class MoveElevator : public CommandBase {
+class LowerArm : public CommandBase {
  private:
+  const int STOP_POINT = 25;
  public:
-  MoveElevator();
+  LowerArm();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

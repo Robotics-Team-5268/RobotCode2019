@@ -31,7 +31,9 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+	//frc::SmartDashboard::PutNumber("breakpoint", 200);
 	CommandBase::drive->resetGyro();
+	CommandBase::drive->setMotors(0.0, 0.0);
 }
 
 void Robot::TeleopPeriodic() { 
@@ -46,7 +48,7 @@ void Robot::AddSmartDashboardItems() {
 	frc::SmartDashboard::PutNumber("Gyro Rate", CommandBase::drive->getGyroRate());
 	frc::SmartDashboard::PutNumber("rightcount", CommandBase::rightEncoder->getCount());
 	frc::SmartDashboard::PutNumber("rightRaw Count", CommandBase::rightEncoder->getRaw());
-	frc::SmartDashboard::PutNumber("rightDistance", CommandBase::rightEncoder->getDistance());
+	frc::SmartDashboard::PutNumber("rightDistance", CommandBase::rightEncoder->getDistance()*7);
 	frc::SmartDashboard::PutNumber("rightRate", CommandBase::rightEncoder->getRate());
 	frc::SmartDashboard::PutBoolean("rightDirection", CommandBase::rightEncoder->getDirection());
 	frc::SmartDashboard::PutBoolean("rightStopped", CommandBase::rightEncoder->getStopped());
@@ -57,6 +59,7 @@ void Robot::AddSmartDashboardItems() {
 	frc::SmartDashboard::PutBoolean("leftDirection", CommandBase::leftEncoder->getDirection());
 	frc::SmartDashboard::PutBoolean("leftStopped", CommandBase::leftEncoder->getStopped());
 	frc::SmartDashboard::PutNumber("Ultrasonic", CommandBase::ultrasonic->getVoltage());
+	frc::SmartDashboard::PutNumber("distance traveled with drive straight", (CommandBase::leftEncoder->getDistance() + (CommandBase::rightEncoder->getDistance() * 7)) / 2);
 }
 
 #ifndef RUNNING_FRC_TESTS

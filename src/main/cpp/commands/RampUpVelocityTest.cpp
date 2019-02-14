@@ -18,18 +18,20 @@ void RampUpVelocityTest::Execute() {
     } else {
       count++;
     }
-    drive->FindVelocity(driveCommand, driveCommand);
+    drive->setMotors(driveCommand, driveCommand);
     double left = CommandBase::leftEncoder->getRate();
     double right = CommandBase::rightEncoder->getRate();
     fout << driveCommand << "," << left << "," << right << '\n';
 }
 
 bool RampUpVelocityTest::IsFinished() {
-    return (5 <= count && driveCommand == 1);
+    return (4 <= count && driveCommand >= 1.0);
 }
 
 void RampUpVelocityTest::End() {
     fout.close();
 }
 
-void RampUpVelocityTest::Interrupted() {}
+void RampUpVelocityTest::Interrupted() {
+    fout.close();
+}
