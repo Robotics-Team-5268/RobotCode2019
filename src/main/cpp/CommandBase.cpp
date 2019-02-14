@@ -24,6 +24,6 @@ void CommandBase::init() {
     sight.reset(new Sighting());
     // Keep at the end
 	oi.reset(new OI());
-    leftEncoder.reset(new Encoders("left", 2, 3, false));
-    rightEncoder.reset(new Encoders("right", 4, 5, false));
+    leftEncoder.reset(new Encoders("left", 3, 2, false));
+    rightEncoder.reset(new Encoders("right", 1, 0, false));
 }

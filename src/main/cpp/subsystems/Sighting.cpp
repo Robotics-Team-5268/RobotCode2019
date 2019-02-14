@@ -52,7 +52,13 @@ double Sighting::distanceFromTarget(){
 	/*// distance costant divided by length between centers of contours
 	double lengthBetweenContours = (centerX[0] - centerX[1]) / 2;
 	return (DISTANCE_CONSTANT / lengthBetweenContours) - OFFSET_TO_FRONT;*/
-	
+	findClosestGroup(groupContours());
+	frc::SmartDashboard::PutNumber("number of contours", centerX.size());
+	if(centerX[selectedGroupTarget.leftContourNum] !=0 && centerX[selectedGroupTarget.rightContourNum] !=0){
+		
+	}
+	//this was here to make sure we had 2 contours before we did our vision code but I moved the stuff above it
+	//out of the condition for testing
 	if (TwoContoursAvailable()) {
 		double pxBetweenContours = abs(centerX[selectedGroupTarget.leftContourNum] - centerX[selectedGroupTarget.rightContourNum]);
 		double distanceToTarget = IN_BETWEEN_CONTOURS * xres / (2 * pxBetweenContours * tanHoriFOV) * MAGIC_NUMBER;
@@ -64,9 +70,9 @@ double Sighting::distanceFromTarget(){
 			frc::SmartDashboard::PutNumber("Distance to target", -1);
 			return -1;
 		}
-		return distanceToTarget;
+			return distanceToTarget;
 	}
-	frc::SmartDashboard::PutNumber("Distance to target", -1);
+	frc::SmartDashboard::PutNumber("Distance to target", -2);
 	return -1;
 }
 

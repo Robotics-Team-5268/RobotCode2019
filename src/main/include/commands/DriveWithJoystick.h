@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CommandBase.h"
+#include "frc/commands/Subsystem.h"
 
 class DriveWithJoystick : public CommandBase {
  public:

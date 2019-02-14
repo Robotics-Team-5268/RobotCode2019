@@ -15,13 +15,13 @@ UDPReceiver::UDPReceiver() : frc::Subsystem("UDPReceiver")
 	, mThread(&UDPReceiver::ThreadBody, this)
 {
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-
+	frc::SmartDashboard::PutNumber("socket file descriptor", sockfd);
 	struct sockaddr_in serv;
 	serv.sin_family = AF_INET;
 	serv.sin_port = htons(5805);
 	//serv.sin_addr.s_addr = inet_addr("10.52.68.71");
 
-	hostent* record = gethostbyname("roboRIO-5268-FRC.local");
+	hostent* record = gethostbyname("roboRIO-5268-FRC");
 	in_addr* address = (in_addr*) record->h_addr;
 	const char* ipaddress = inet_ntoa(*address);
 	// This MUST be given an ip address, NOT a hostname

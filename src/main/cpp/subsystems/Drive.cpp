@@ -64,7 +64,7 @@ void Drive::setVelocity(float left, float right) {
 	}
 	setMotors(left, right);
 }
-
+//what is this method supposed to do? it doesn't find our current velocity so i dont know what it is for.
 void Drive::findVelocity(float left, float right) {
 	//float left = -CommandBase::oi->getDriverJoystick()->GetRawAxis(1);
 	//float right = -CommandBase::oi->getDriverJoystick()->GetRawAxis(5);
