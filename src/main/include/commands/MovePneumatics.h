@@ -2,14 +2,16 @@
 
 #include "CommandBase.h"
 
-class MoveElevator : public CommandBase {
- private:
-  double speed;
+#include <frc/DoubleSolenoid.h>
+
+class MovePneumatics : public CommandBase {
  public:
-  MoveElevator(double spd);
+  MovePneumatics(frc::DoubleSolenoid::Value v);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End() override;
   void Interrupted() override;
+ private:
+  frc::DoubleSolenoid::Value value;
 };

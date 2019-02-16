@@ -28,4 +28,7 @@
 #define HALL_SENSOR 6
 
 #define PCM_PORT 0 //Pnuematics Control Module
-#define SOLENOID_PORT 0
+#define DOUBLESOLENOID_FORWARD_CHANNEL 0
+#define DOUBLESOLENOID_REVERSE_CHANNEL 1
+
+#define TROLLEY_VICTOR_SPX_CAN_BUS_ID 0 //Needs to be changed later

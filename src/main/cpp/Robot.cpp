@@ -44,6 +44,7 @@ void Robot::TeleopPeriodic() {
 void Robot::TestPeriodic() {}
 
 void Robot::AddSmartDashboardItems() {
+	// frc::SmartDashboard::PutValue("Solenoid Value", CommandBase::pneumatics->getValue())
 	frc::SmartDashboard::PutNumber("Gyro Angle", CommandBase::drive->getGyroAngle());
 	frc::SmartDashboard::PutNumber("Gyro Rate", CommandBase::drive->getGyroRate());
 	frc::SmartDashboard::PutNumber("rightcount", CommandBase::rightEncoder->getCount());

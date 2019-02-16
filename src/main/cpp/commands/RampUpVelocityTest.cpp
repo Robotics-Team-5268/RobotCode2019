@@ -12,7 +12,7 @@ pdp()
 void RampUpVelocityTest::Initialize() {}
 
 void RampUpVelocityTest::Execute() {
-    if (count == 5) {
+    if (count == 10) {
       driveCommand += 0.02;
       count = 0;
     } else {
