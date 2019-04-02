@@ -4,7 +4,7 @@
 #include "commands/Velocity.h"
 
 
-
+//Will need to be tuned but that should be done after I am confident that other systems work as intended
 void DriveStraightDistance::End(){
     velocity->done = true;
     //velocity->End();
@@ -23,7 +23,7 @@ void DriveStraightDistance::Execute(){
     /*if (velocity == nullptr){
         return;
     }*/
-    double currentDistance = (CommandBase::leftEncoder->getDistance() + (CommandBase::rightEncoder->getDistance() * 7)) / 2;
+    double currentDistance = (CommandBase::leftEncoder->getDistance() + (CommandBase::rightEncoder->getDistance())) / 2;
     double velocityPIDInput = 0;
     if (currentDistance < ACCELERATION_DISTANCE) {
         //This is when we start accelerating
@@ -43,7 +43,7 @@ void DriveStraightDistance::Execute(){
 }
 
 bool DriveStraightDistance::IsFinished(){
-    if ((CommandBase::leftEncoder->getDistance() + (CommandBase::rightEncoder->getDistance() * 7)) / 2 > distance) {
+    if ((CommandBase::leftEncoder->getDistance() + (CommandBase::rightEncoder->getDistance())) / 2 > distance) {
         return true;
     }
     return false;

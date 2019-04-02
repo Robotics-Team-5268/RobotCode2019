@@ -21,8 +21,7 @@ void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() { frc::Scheduler::GetInstance()->Run(); }
 
 void Robot::AutonomousInit() {
-	autonomousCommand.reset(new Autonomous(AutoChooser.AutonomousSelection()));
-	autonomousCommand->Start();
+	TeleopInit();
 }
 
 void Robot::AutonomousPeriodic() { 
@@ -31,7 +30,8 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-	//frc::SmartDashboard::PutNumber("breakpoint", 200);
+	CommandBase::rightEncoder->reset();
+	CommandBase::leftEncoder->reset();
 	CommandBase::drive->resetGyro();
 	CommandBase::drive->setMotors(0.0, 0.0);
 }
@@ -44,12 +44,13 @@ void Robot::TeleopPeriodic() {
 void Robot::TestPeriodic() {}
 
 void Robot::AddSmartDashboardItems() {
+	double value = 0.0;
 	// frc::SmartDashboard::PutValue("Solenoid Value", CommandBase::pneumatics->getValue())
 	frc::SmartDashboard::PutNumber("Gyro Angle", CommandBase::drive->getGyroAngle());
 	frc::SmartDashboard::PutNumber("Gyro Rate", CommandBase::drive->getGyroRate());
 	frc::SmartDashboard::PutNumber("rightcount", CommandBase::rightEncoder->getCount());
 	frc::SmartDashboard::PutNumber("rightRaw Count", CommandBase::rightEncoder->getRaw());
-	frc::SmartDashboard::PutNumber("rightDistance", CommandBase::rightEncoder->getDistance()*7);
+	frc::SmartDashboard::PutNumber("rightDistance", CommandBase::rightEncoder->getDistance());
 	frc::SmartDashboard::PutNumber("rightRate", CommandBase::rightEncoder->getRate());
 	frc::SmartDashboard::PutBoolean("rightDirection", CommandBase::rightEncoder->getDirection());
 	frc::SmartDashboard::PutBoolean("rightStopped", CommandBase::rightEncoder->getStopped());
@@ -60,7 +61,7 @@ void Robot::AddSmartDashboardItems() {
 	frc::SmartDashboard::PutBoolean("leftDirection", CommandBase::leftEncoder->getDirection());
 	frc::SmartDashboard::PutBoolean("leftStopped", CommandBase::leftEncoder->getStopped());
 	frc::SmartDashboard::PutNumber("Ultrasonic", CommandBase::ultrasonic->getVoltage());
-	frc::SmartDashboard::PutNumber("distance traveled with drive straight", (CommandBase::leftEncoder->getDistance() + (CommandBase::rightEncoder->getDistance() * 7)) / 2);
+	frc::SmartDashboard::PutNumber("distance traveled with drive straight", (CommandBase::leftEncoder->getDistance() + (CommandBase::rightEncoder->getDistance())) / 2);
 }
 
 #ifndef RUNNING_FRC_TESTS

@@ -6,12 +6,10 @@ Grabber::Grabber() : Subsystem("Grabber") {
     speedControllerR.SetInverted(true);
 }
 
-void Grabber::GrabberIntake() {
-    GrabberSCG.Set(0.6);
-}
-void Grabber::GrabberOff() {
-    GrabberSCG.Set(0.0);
-}
-void Grabber::GrabberOutput() {
-    GrabberSCG.Set(-0.4);
+void Grabber::SetMotors(double speed){
+    //GrabberSCG.Set(speed);
+    //if the above line does not work, uncomment this block to ungroup the speed controllers
+    speedControllerL.Set(speed);
+    speedControllerR.Set(speed);
+    
 }

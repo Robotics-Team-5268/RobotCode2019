@@ -4,7 +4,8 @@
 #include <frc/SpeedControllerGroup.h>
 #include <frc/SpeedController.h>
 #include <frc/WPILib.h>
-
+//for the purposes of fixing the code I will assume these are correct
+//put this on the "TODO" list for when I get the robot to prep for sneak-a-peak
 #define DRIVE_SPEED_CONTROLLER_FL_CHANNEL 0
 #define DRIVE_SPEED_CONTROLLER_FR_CHANNEL 1
 #define DRIVE_SPEED_CONTROLLER_BL_CHANNEL 2
@@ -27,8 +28,11 @@
 
 #define HALL_SENSOR 6
 
-#define PCM_PORT 0 //Pnuematics Control Module
+#define PCM_PORT 10 //Pnuematics Control Module 10
 #define DOUBLESOLENOID_FORWARD_CHANNEL 0
 #define DOUBLESOLENOID_REVERSE_CHANNEL 1
 
-#define TROLLEY_VICTOR_SPX_CAN_BUS_ID 0 //Needs to be changed later
+#define CLOSED_DEGREES 30
+#define OPEN_DEGREES 90
+
+#define TROLLEY_VICTOR_SPX_CAN_BUS_ID 0 //Needs to be removed later 12

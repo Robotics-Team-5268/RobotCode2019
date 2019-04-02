@@ -2,7 +2,7 @@
 #include "CommandBase.h"
 
 MovePneumatics::MovePneumatics(frc::DoubleSolenoid::Value v) : CommandBase("MovePneumatics") {
-    Requires(CommandBase::pneumatics.get());
+    //Requires(CommandBase::pneumatics.get());
     value = v;
 }
 
@@ -10,11 +10,11 @@ void MovePneumatics::Initialize() {}
 
 void MovePneumatics::Execute() {
     if (value == frc::DoubleSolenoid::kForward) {
-        CommandBase::pneumatics->Forward();
+        //CommandBase::pneumatics->Forward();
     } else if (value == frc::DoubleSolenoid::kReverse){
-        CommandBase::pneumatics->Reverse();
+        //CommandBase::pneumatics->Reverse();
     } else {
-        CommandBase::pneumatics->Off();
+        //CommandBase::pneumatics->Off();
     }
 }
 

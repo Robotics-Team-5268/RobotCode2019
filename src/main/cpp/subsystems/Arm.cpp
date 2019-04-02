@@ -4,10 +4,14 @@ Arm::Arm() : Subsystem("Arm") {
 
 }
 
-void Arm::MoveArm() {
-  arm_SC.Set(0.4);
+void Arm::InitDefaultCommand(){
+
 }
 
-int Arm::GetCount() {
-  return hallSensor.Get();
+void Arm::MoveArm(double speed) {
+  arm_SC.Set(speed);
 }
+
+/*int Arm::GetCount() {
+  return hallSensor.Get();
+}*/

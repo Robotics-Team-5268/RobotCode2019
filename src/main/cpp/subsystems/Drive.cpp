@@ -2,6 +2,7 @@
 #include "commands/DriveWithJoystick.h"
 
 #include <frc/smartDashBoard/SmartDashBoard.h>
+// #include <ctre/phoenix/motorcontrol/IFollower.h>
 
 Drive::Drive() : Subsystem("Drive") {
 	oldLeftSpeed = 0.0;
@@ -14,10 +15,18 @@ Drive::Drive() : Subsystem("Drive") {
 	velocityToCommandSlope[1] = 1/3493.90;
 	velocityToCommandSlope[2] = 1/3386.53;
 	velocityToCommandSlope[3] = 1/3744.83;
-	speedControllerFL.SetInverted(SCFL_INVERTED);
-	speedControllerBL.SetInverted(SCBL_INVERTED);
-	speedControllerFR.SetInverted(SCFR_INVERTED);
-	speedControllerBR.SetInverted(SCBR_INVERTED);
+	// speedControllerFL.SetInverted(SCFL_INVERTED);
+	// speedControllerBL.SetInverted(SCBL_INVERTED);
+	// speedControllerFR.SetInverted(SCFR_INVERTED);
+	// speedControllerBR.SetInverted(SCBR_INVERTED);
+	/*
+	talonSRXFL.SetInverted(SCFL_INVERTED);
+	talonSRXBL.SetInverted(SCBL_INVERTED);
+	talonSRXFR.SetInverted(SCFR_INVERTED);
+	talonSRXBR.SetInverted(SCBR_INVERTED);
+	*/
+	// talonSRXBL.Follow(talonSRXFL);
+	// talonSRXBR.Follow(talonSRXFR);
 }
 
 void Drive::InitDefaultCommand() {
@@ -36,6 +45,9 @@ void Drive::takeInput() {
     if (leftSpeed >= .9 && rightSpeed >= .9) {
 	  setMotors(1, 1);
     } else {
+	  if(leftSpeed<.1){
+	  	setMotors(0, rightSpeed);
+	  }
 	  setMotors(leftSpeed, rightSpeed);
     }
 
@@ -49,10 +61,14 @@ void Drive::takeInput() {
 void Drive::setMotors(float leftSpeed, float rightSpeed) {
 	diffDrive.TankDrive(leftSpeed, rightSpeed, false);
 
-	frc::SmartDashboard::PutNumber("Speed Controller FL", speedControllerFL.Get());
-	frc::SmartDashboard::PutNumber("Speed Controller FR", speedControllerFR.Get());
-	frc::SmartDashboard::PutNumber("Speed Controller BL", speedControllerBL.Get());
-	frc::SmartDashboard::PutNumber("Speed Controller BR", speedControllerBR.Get());
+	// rightSRXGroup.Set(rightSpeed);
+	// leftSRXGroup.Set(leftSpeed);
+	/*
+	frc::SmartDashboard::PutNumber("Speed Controller FL", talonSRXFL.Get());
+	frc::SmartDashboard::PutNumber("Speed Controller FR", talonSRXFR.Get());
+	frc::SmartDashboard::PutNumber("Speed Controller BL", talonSRXBL.Get());
+	frc::SmartDashboard::PutNumber("Speed Controller BR", talonSRXBR.Get());
+	*/
 }
 
 frc::AnalogGyro* Drive::getGyro() {

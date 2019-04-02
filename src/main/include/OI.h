@@ -8,5 +8,6 @@ class OI {
   std::vector<frc::JoystickButton*> driverBtns, mechanismsBtns;
  public:
   std::shared_ptr<frc::Joystick> getDriverJoystick();
+  std::shared_ptr<frc::Joystick> getMechanismJoystick();
   OI();
 };

@@ -37,10 +37,10 @@ public:
 			std::vector<double>& centerY_out,
 			std::vector<double>& width_out,
 			std::vector<double>& height_out,
-			std::vector<double>& area_out);
+			std::vector<double>& angle_out);
 	void AddSmartDashboardItems();
 	// May become private later
-	std::vector<int> area, centerX, centerY, height, width;
+	std::vector<double> angle, centerX, centerY, height, width;
 
 };
 

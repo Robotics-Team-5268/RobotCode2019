@@ -2,7 +2,7 @@
 
 VelocityTest::VelocityTest() 
 : fout("/home/lvuser/TestValue.csv"),
-pdp()
+pdp(10)
 {
   driveCommand = 0.6;
   count = 0;

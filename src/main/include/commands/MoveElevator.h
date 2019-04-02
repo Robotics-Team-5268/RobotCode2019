@@ -4,9 +4,8 @@
 
 class MoveElevator : public CommandBase {
  private:
-  double speed;
  public:
-  MoveElevator(double spd);
+  MoveElevator();
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;

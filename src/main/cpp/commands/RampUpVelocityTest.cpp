@@ -2,7 +2,7 @@
 
 RampUpVelocityTest::RampUpVelocityTest() 
 : fout("/home/lvuser/TestValue.csv"),
-pdp()
+pdp(10)
 {
   driveCommand = 0.0;
   count = 0;

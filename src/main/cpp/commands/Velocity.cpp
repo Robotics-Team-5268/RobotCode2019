@@ -13,8 +13,7 @@ Velocity::Velocity() : CommandBase("Velocity") {
     leftPIDSource = new VelocityPIDSource(false);
     rightPIDSource = new VelocityPIDSource(true);
     setPointVelocity = 0;
-    rightPID->SetSetpoint(0);
-    leftPID->SetSetpoint(0);
+
 }
 
 bool Velocity::IsInterruptible() const{
@@ -38,6 +37,7 @@ void Velocity::End() {
 }
 
 void Velocity::Initialize() {
+
     leftPID = new frc::PIDController(
         frc::SmartDashboard::GetNumber("PLeftvelocity", .03),
         frc::SmartDashboard::GetNumber("ILeftvelocity", .000),
@@ -60,7 +60,9 @@ void Velocity::Initialize() {
     rightPID->SetInputRange(-352.0, 352.0);
     rightPID->SetOutputRange(-1.0, 1.0);
     leftPID->Enable();
-    rightPID->Enable();  
+    rightPID->Enable();
+    rightPID->SetSetpoint(0);
+    leftPID->SetSetpoint(0);  
 }
     
 void Velocity::Execute() {
@@ -75,7 +77,7 @@ void Velocity::Execute() {
         frc::SmartDashboard::PutNumber("FRightPIDvelocity", rightPID->GetP());
     }
     //this is the hard coding way of avoiding the PID. if this is active then the line in PIDWrite should be commented or vice versa
-    CommandBase::drive->setMotors(0, 0);
+    CommandBase::drive->setMotors(leftPID->GetSetpoint(), rightPID->GetSetpoint());
 }
 void Velocity::SetSetpoint(double inputVelocity){
     if(rightPID && leftPID){

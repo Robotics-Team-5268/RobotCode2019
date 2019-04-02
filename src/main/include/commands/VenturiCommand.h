@@ -1,15 +1,14 @@
 #pragma once
 
-#include <frc/commands/Command.h>
+#include "CommandBase.h"
 
-class GrabberCommand : public frc::Command {
- private:
-  double speed;
+class VenturiCommand : public frc::Command {
  public:
-  GrabberCommand(double spd);
+  VenturiCommand(int action);
   void Initialize() override;
   void Execute() override;
   bool IsFinished() override;
   void End() override;
   void Interrupted() override;
+  int Action;
 };

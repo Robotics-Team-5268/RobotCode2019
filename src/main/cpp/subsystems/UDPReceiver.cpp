@@ -15,13 +15,13 @@ UDPReceiver::UDPReceiver() : frc::Subsystem("UDPReceiver")
 	, mThread(&UDPReceiver::ThreadBody, this)
 {
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
-
+	frc::SmartDashboard::PutNumber("socket file descriptor", sockfd);
 	struct sockaddr_in serv;
 	serv.sin_family = AF_INET;
 	serv.sin_port = htons(5805);
 	//serv.sin_addr.s_addr = inet_addr("10.52.68.71");
 
-	hostent* record = gethostbyname("roboRIO-5268-FRC.local");
+	hostent* record = gethostbyname("roboRIO-5268-FRC");
 	in_addr* address = (in_addr*) record->h_addr;
 	const char* ipaddress = inet_ntoa(*address);
 	// This MUST be given an ip address, NOT a hostname
@@ -46,16 +46,16 @@ UDPReceiver::~UDPReceiver() {
 }
 
 // Called by sighting with references to arrays
-void UDPReceiver::GetContours(vector<double>& centerX_out,
-							  vector<double>& centerY_out,
-							  vector<double>& width_out,
-							  vector<double>& height_out,
-							  vector<double>& area_out) {
+void UDPReceiver::GetContours(std::vector<double>& centerX_out,
+							  std::vector<double>& centerY_out,
+							  std::vector<double>& width_out,
+							  std::vector<double>& height_out,
+							  std::vector<double>& angle_out) {
 	centerX_out.assign(centerX.begin(), centerX.end());
 	centerY_out.assign(centerY.begin(), centerY.end());
 	width_out.assign(width.begin(), width.end());
 	height_out.assign(height.begin(), height.end());
-	area_out.assign(area.begin(), area.end());
+	angle_out.assign(angle.begin(), angle.end());
 
 	// When this uses int vectors, it will be easy, ex:
 	// centerX_out = centerX
@@ -75,8 +75,7 @@ void UDPReceiver::ThreadBody() {
 			centerY.clear();
 			width.clear();
 			height.clear();
-			area.clear();
-
+			angle.clear();
 			string msg = string(buffer);
 
 			frc::SmartDashboard::PutString("Raw contours", msg);
@@ -92,7 +91,7 @@ void UDPReceiver::ThreadBody() {
 					centerY.push_back(strToInt(properties[1]));
 					width.push_back(strToInt(properties[2])); // Crashed here once when super close to target in teleop
 					height.push_back(strToInt(properties[3]));
-					area.push_back(strToInt(properties[4]));
+					angle.push_back(strToInt(properties[4]));
 				}
 			}
 		}
